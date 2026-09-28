@@ -1,0 +1,19 @@
+# Rust
+/target
+**/*.rs.bk
+panic.log
+
+# .NET / Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS
+Thumbs.db
+[Ee]xpress/
+*.log
+*.json

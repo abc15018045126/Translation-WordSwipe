@@ -1,0 +1,5 @@
+[http]
+check-revoke = false
+
+[build]
+target-dir = "target"

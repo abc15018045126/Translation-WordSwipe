@@ -1,0 +1,50 @@
+[package]
+name = "translation_word_swipe"
+version = "1.0.0"
+edition = "2021"
+
+[[bin]]
+name = "TranslationWordSwipe"
+path = "src/main.rs"
+
+[dependencies]
+dioxus = { version = "0.7.10", features = ["desktop"] }
+tokio = { version = "1", features = ["full"] }
+reqwest = { version = "0.12", features = ["json", "cookies"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+regex = "1.11"
+urlencoding = "2.1"
+arboard = "3.4"
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_System_LibraryLoader",
+    "Win32_System_DataExchange",
+    "Win32_System_Threading",
+    "Win32_Graphics_Gdi",
+    "Win32_System_Registry"
+] }
+tray-icon = "0.21"
+muda = "0.17"
+image = { version = "0.25", default-features = false, features = ["png", "ico"] }
+
+[lints.rust]
+unsafe_code = "deny"
+rust_2018_idioms = { level = "deny", priority = -1 }
+nonstandard_style = { level = "deny", priority = -1 }
+unused = { level = "deny", priority = -1 }
+future_incompatible = { level = "deny", priority = -1 }
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+correctness = { level = "deny", priority = -1 }
+suspicious = { level = "deny", priority = -1 }
+style = { level = "deny", priority = -1 }
+complexity = { level = "deny", priority = -1 }
+perf = { level = "deny", priority = -1 }
+
+[build-dependencies]
+embed-manifest = "1.5.1"
+winres = "0.1"

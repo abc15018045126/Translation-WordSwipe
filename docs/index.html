@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Translation WordSwipe</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb, #06b6d4);
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.4);
+    }
+
+    .logo-svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .lang-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .lang-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+      border-color: var(--accent);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #e2e8f0;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    h2:first-child {
+      margin-top: 0;
+    }
+
+    p, ul {
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+      color: #e2e8f0;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo-container">
+        <svg class="logo-svg" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 390 120 C 430 230, 280 275, 125 350" stroke="#38bdf8" stroke-width="36" stroke-linecap="round"/>
+          <circle cx="125" cy="350" r="18" fill="#ffffff"/>
+        </svg>
+      </div>
+      <h1>Translation WordSwipe</h1>
+      <p class="subtitle">Privacy Policy / 隐私政策</p>
+    </div>
+
+    <div class="lang-tabs">
+      <button class="lang-btn active" onclick="switchLang('zh')">简体中文</button>
+      <button class="lang-btn" onclick="switchLang('en')">English</button>
+    </div>
+
+    <!-- 中文内容 -->
+    <div id="content-zh" class="card">
+      <h2>1. 概述与核心原则</h2>
+      <p><strong>Translation WordSwipe</strong>（以下简称“本软件”）是一款专注于 Windows 平台的高性能划词翻译工具。我们高度尊重并严格保护用户的隐私。<strong>本软件不会收集、上传、分析或出售用户的任何个人身份数据或日常使用习惯。</strong></p>
+
+      <div class="highlight-box">
+        <strong>核心承诺：</strong>无用户追踪、无广告推送、无第三方统计 SDK、无远程控制后台。
+      </div>
+
+      <h2>2. 数据处理与传输</h2>
+      <ul>
+        <li><strong>划词与选中文本处理：</strong>当您在屏幕上划选文本并触发翻译时，被选中的文本会通过内存传递至翻译模块，并仅用于向您选择的翻译引擎发起即时请求。文本内容绝不会保存到任何持久化日志中。</li>
+        <li><strong>剪贴板访问：</strong>为了跨应用程序捕获选中的文本，软件会在瞬间读取选中文本并立即恢复您的历史剪贴板内容。本软件绝不会监控或存储您复制的其他无关内容（如密码、银行账号等）。</li>
+        <li><strong>网络通信：</strong>软件发起的网络请求仅直接发送至公开可用的翻译服务接口（包括 Google 翻译、必应翻译或您自行配置的自定义代理/API）。我们不设立任何收集用户文本的中间分析服务器。</li>
+      </ul>
+
+      <h2>3. 本地存储</h2>
+      <p>本软件的所有配置（例如语言方向、界面布局、代理服务器设置、开机自启等）均完整保存在您本机的 <code>%APPDATA%\TranslationWordSwipe\settings.json</code> 文件中。该配置文件完全归您所有，卸载软件或清空该目录即可彻底移除所有配置。</p>
+
+      <h2>4. 权限使用说明</h2>
+      <ul>
+        <li><strong>全局输入钩子 (Low-Level Mouse Hook)：</strong>用于监听划词滑动手势，以便判断用户是否在屏幕上完成划词。</li>
+        <li><strong>开机自启动：</strong>仅在您主动开启自启开关时在注册表或 Windows 启动项中写入启动路径，您可随时在设置中关闭。</li>
+      </ul>
+
+      <h2>5. 隐私政策的变更与联系</h2>
+      <p>如本隐私政策有任何重大修改，我们将通过 GitHub 仓库发布最新版本。若您对本政策有任何疑问，欢迎通过 GitHub Issues 与我们联系。</p>
+    </div>
+
+    <!-- 英文内容 -->
+    <div id="content-en" class="card" style="display: none;">
+      <h2>1. Overview & Core Principles</h2>
+      <p><strong>Translation WordSwipe</strong> ("the Application") is a high-performance desktop text-swipe translation tool for Windows. We take your privacy very seriously. <strong>The Application does not collect, harvest, analyze, or sell any personal data, identity information, or browsing history.</strong></p>
+
+      <div class="highlight-box">
+        <strong>Our Commitment:</strong> Zero tracking, zero telemetry, zero advertising SDKs, and zero centralized backend servers.
+      </div>
+
+      <h2>2. Data Processing & Network Transmission</h2>
+      <ul>
+        <li><strong>Selected Text:</strong> When you select text on screen to trigger translation, the selected text is temporarily handled in memory and directly forwarded to your chosen translation engine (e.g., Google Translate, Bing Translator, or your custom API endpoint) solely to deliver the translated result. It is never logged or cached permanently.</li>
+        <li><strong>Clipboard Usage:</strong> To reliably capture text across various desktop applications, the Application briefly inspects the selected text and immediately restores your previous clipboard history. We never inspect or retain unrelated clipboard contents.</li>
+        <li><strong>Network Requests:</strong> All network requests are dispatched directly from your device to the target translation APIs. There is no intermediate proxy or analytics server intercepting your queries.</li>
+      </ul>
+
+      <h2>3. Local Storage</h2>
+      <p>All application configurations (such as translation preferences, layout options, and proxy settings) are stored locally on your machine at <code>%APPDATA%\TranslationWordSwipe\settings.json</code>. You have complete ownership of these files.</p>
+
+      <h2>4. System Permissions</h2>
+      <ul>
+        <li><strong>Low-Level Mouse Hook:</strong> Used solely to detect swipe/selection gestures to trigger translation on demand.</li>
+        <li><strong>Autostart:</strong> Registered only when you explicitly enable the startup option in settings, and can be disabled anytime.</li>
+      </ul>
+
+      <h2>5. Contact & Updates</h2>
+      <p>If you have any questions or feedback regarding this Privacy Policy, please open an issue on our GitHub repository.</p>
+    </div>
+
+    <footer>
+      <p>Translation WordSwipe &bull; Open Source under MIT License</p>
+      <p>Last updated: October 2026</p>
+    </footer>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      const zh = document.getElementById('content-zh');
+      const en = document.getElementById('content-en');
+      const btns = document.querySelectorAll('.lang-btn');
+      
+      if (lang === 'zh') {
+        zh.style.display = 'block';
+        en.style.display = 'none';
+        btns[0].classList.add('active');
+        btns[1].classList.remove('active');
+      } else {
+        zh.style.display = 'none';
+        en.style.display = 'block';
+        btns[0].classList.remove('active');
+        btns[1].classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

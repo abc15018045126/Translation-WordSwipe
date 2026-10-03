@@ -112,25 +112,49 @@ impl Default for AppSettings {
     }
 }
 
+fn is_file_or_dir_writable(path: &std::path::Path) -> bool {
+    if path.exists() {
+        fs::OpenOptions::new().write(true).open(path).is_ok()
+    } else if let Some(parent) = path.parent() {
+        let test_file = parent.join(format!(".write_test_{}", std::process::id()));
+        match fs::write(&test_file, b"") {
+            Ok(_) => {
+                let _ = fs::remove_file(&test_file);
+                true
+            }
+            Err(_) => false,
+        }
+    } else {
+        false
+    }
+}
+
 impl AppSettings {
     pub fn config_path() -> PathBuf {
-        // 1. 优先使用 exe 所在目录下的 settings.json（确保便携与自启时路径正确）
+        // 1. 优先检查 exe 所在目录的 settings.json（便携绿色版模式：文件必须存在且可写）
         if let Ok(exe) = std::env::current_exe() {
             if let Some(dir) = exe.parent() {
                 let exe_file = dir.join("settings.json");
-                if exe_file.exists() {
+                if exe_file.exists() && is_file_or_dir_writable(&exe_file) {
                     return exe_file;
                 }
             }
         }
 
-        // 2. 其次检查当前工作目录下是否存在 settings.json（兼容开发调试环境）
+        // 2. 检查当前工作目录（开发环境调试模式：文件存在且可写）
         let cwd_file = PathBuf::from("settings.json");
-        if cwd_file.exists() {
+        if cwd_file.exists() && is_file_or_dir_writable(&cwd_file) {
             return cwd_file;
         }
 
-        // 3. 若均不存在，默认创建目标统一设为 exe 所在目录
+        // 3. 微软商店 (MSIX) / 现代化安装版模式：标准规范存储路径 %APPDATA%\TranslationWordSwipe\settings.json
+        if let Some(appdata) = std::env::var_os("APPDATA") {
+            let appdata_dir = PathBuf::from(appdata).join("TranslationWordSwipe");
+            let _ = fs::create_dir_all(&appdata_dir);
+            return appdata_dir.join("settings.json");
+        }
+
+        // 4. 保底方案：若无 APPDATA 环境变量，回退到 exe 所在目录
         if let Ok(exe) = std::env::current_exe() {
             if let Some(dir) = exe.parent() {
                 return dir.join("settings.json");
@@ -157,7 +181,29 @@ impl AppSettings {
             }
         }
 
-        // 当 settings.json 不存在时，自动在目标目录（exe 所在目录）创建并写入默认配置文件
+        // 如果用户 AppData 中暂无配置，但 exe 目录下有一份（例如安装包附带的初始配置或旧版便携配置），尝试从中迁移读取
+        if let Ok(exe) = std::env::current_exe() {
+            if let Some(dir) = exe.parent() {
+                let initial_file = dir.join("settings.json");
+                if initial_file.exists() && initial_file != path {
+                    if let Ok(content) = fs::read_to_string(&initial_file) {
+                        if let Ok(mut settings) = serde_json::from_str::<AppSettings>(&content) {
+                            settings.engine = normalize_engine(&settings.engine);
+                            settings.from_lang = normalize_lang(&settings.from_lang, false);
+                            settings.to_lang = normalize_lang(&settings.to_lang, true);
+                            crate::translator::client::set_proxy_config(&settings.proxy_mode, &settings.proxy_url);
+                            crate::translator::google_web::set_google_web_mode(&settings.google_web_mode);
+                            crate::ocr::set_ocr_trigger_enabled(settings.ocr_trigger_enabled);
+                            settings.auto_start = crate::autostart::is_autostart_enabled();
+                            settings.save();
+                            return settings;
+                        }
+                    }
+                }
+            }
+        }
+
+        // 当 settings.json 仍不存在时，自动在目标目录创建并写入默认配置文件
         let default_settings = Self::default();
         default_settings.save();
         default_settings
@@ -173,7 +219,9 @@ impl AppSettings {
             let _ = fs::create_dir_all(parent);
         }
         if let Ok(json) = serde_json::to_string_pretty(self) {
-            let _ = fs::write(path, json);
+            if let Err(e) = fs::write(&path, json) {
+                eprintln!("Failed to save settings to {:?}: {}", path, e);
+            }
         }
     }
 }

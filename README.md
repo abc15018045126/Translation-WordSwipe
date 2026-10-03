@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="Google_Translate_logo.svg" width="96" height="96" alt="Translation WordSwipe Logo" />
+<img src="wordswipe_logo.svg" width="96" height="96" alt="Translation WordSwipe Logo" />
 
 ### Fast, Ultra-Lightweight, and Intelligent Desktop Text-Swipe Translation for Windows
 

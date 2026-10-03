@@ -87,7 +87,14 @@ fn main() {
             std::backtrace::Backtrace::capture()
         );
         eprintln!("{}", msg);
-        let _ = std::fs::write("panic.log", msg);
+        let log_path = if let Some(appdata) = std::env::var_os("APPDATA") {
+            let dir = std::path::PathBuf::from(appdata).join("TranslationWordSwipe");
+            let _ = std::fs::create_dir_all(&dir);
+            dir.join("panic.log")
+        } else {
+            std::path::PathBuf::from("panic.log")
+        };
+        let _ = std::fs::write(log_path, msg);
     }));
 
     let is_ui = std::env::args().any(|arg| arg == "--ui");
